@@ -1,0 +1,161 @@
+﻿@model SmartCampus.ViewModels.AcademicResourceVm
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+<div class="container">
+    <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPostLargeModal(this);" enctype="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <div class="col-md-8 col-lg-8 col-8">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Id" />
+                            <label>Title</label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Id" />
+                            <label>Date</label>
+                            <input asp-for="Date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Id" />
+                            <label>Author</label>
+                            <input asp-for="Author" class="form-control" />
+                            <span asp-validation-for="Author" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select asp-for="CategoryId" asp-items="@ViewBag.Category" class="form-control"> </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label>Department</label>
+                            <select asp-for="DepartmentId" asp-items="@ViewBag.SubCategory" class="form-control category"></select>
+                            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select asp-for="SubjectId" asp-items="@ViewBag.Brand" class="form-control subcategory"> </select>
+                            <span asp-validation-for="SubjectId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Gallery</label>
+                                <input type="file" multiple class="form-control" onchange="loadImg(event)" id="Galaries" asp-for="ImageCollections" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select asp-for="AcademicResourceStatus" class="form-control">
+                                <option value="Enable">Enable</option>
+                                <option value="Disable">Disable</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            
+                                <label>pdf</label>
+                                <input type="file" multiple class="form-control" asp-for="PdfCollections" />
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-center align-items-center">
+                    <button type="submit" class="savebtn">Save</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-4">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-12 col-12 col-lg-12 ">
+                            @if (Model.ImagePath != null)
+                            {
+                                <div class="displayonEditPri" id="displayonEditPri">
+                                    <img src="~/@Model.ImagePath" alt="Alternate Text" />
+                                </div>
+                            }
+                            <div class="primaryimg" id="mainimgDiv">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-12 col-lg-12">
+                            @if (Model.ImageCollectionPath != null)
+                            {
+                                <div class="displayonEdit" id="displayonEdit">
+                                    <div class="row">
+                                        @foreach (var item in Model.ImageCollectionPath)
+                                        {
+
+                                            <div class="col-md-2 col-3 col-lg-2 nopadding">
+                                                <img src="~/@item.ImagePath" style="height: 30PX; margin-bottom: 3px; width: 30PX; " alt="Alternate Text" />
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <div class="galleryimg">
+                                <div class="row " id="galleryParent">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

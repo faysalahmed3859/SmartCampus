@@ -1,0 +1,63 @@
+﻿`
+
+
+
+@model SmartCampus.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "User Login";
+}
+
+<body>
+
+    <header id="top-banner">
+        <div class="banner-content">
+            <h1>Welcome to Our Stamford LarnHub</h1>
+            <p>Join us to access exclusive content and courses!</p>
+
+        </div>
+    </header>
+
+
+
+    <!-- Registration section starts from here -->
+
+
+    <section id="registration">
+        <div class="reminder">
+            <h1>Login To Get It Benefits</h1>
+        </div>
+        <form method="post">
+            <div class="form">
+                <h3>SignIn Your Account</h3>
+
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div>
+                    <input type="email" placeholder="Email ID" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="password-container">
+                    <div class="password-input">
+                        <input type="password" placeholder="Password" asp-for="Password" id="password">
+                        <i class="fas fa-eye" id="password-toggle-icon" onclick="togglePasswordVisibility()"></i>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="remember-me">
+                    <label for="remember">RememberMe</label>
+                    <input type="checkbox" id="remember" asp-for="IsRemember">
+                </div>
+                <div class="btn">
+                    <button type="submit" class="btn btn-outline-dark">Login</button>
+                    
+                </div>
+
+            </div>
+        </form>
+    </section>
+    <!-- Registration section ends from here -->
+
+
+
+
+</body>

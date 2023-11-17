@@ -1,0 +1,33 @@
+﻿@model List<SmartCampus.Models.AcademicResource>
+
+<h2>Approved Academic Posts</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Apoprove</th>
+            <th>Link</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Category.Name</td> @* Assuming you have a Name property for Category *@
+                
+                <td>
+                    @if (!post.IsApproved)
+                    {
+                        <form asp-action="ApproveAcademicePost" asp-route-id="@post.Id">
+                            <button type="submit" class="btn btn-light">Approve</button>
+                        </form>
+                    }
+                </td>
+                <td class="btn btn-light">@Html.ActionLink("View", "ApproveAcademiceDetails", new { id = post.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,158 @@
+﻿@model SmartCampus.ViewModels.SearchVM
+
+
+<style>
+    .beautiful-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #151564; /* Change to your desired button color */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        margin-top: 20px; /* Add a smooth transition effect on hover */
+        /* Add more styles as desired to make the button beautiful */
+    }
+
+        .beautiful-button:hover {
+            background-color: white;
+            text-decoration: none; /* Change the button color on hover */
+            color: black;
+        }
+</style>
+
+<body>
+    <header id="top-banner">
+        <div class="banner-content">
+            <h1>Welcome to our Stamford LearmHub</h1>
+        </div>
+    </header>
+
+
+    <!-- Hero section ends from here -->
+    <!-- Features section starts from here -->
+    <section id="features">
+
+        <h1>Awesome Features</h1>
+        <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+
+        <div class="fea-base">
+            <div class="fea-box">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Academic Resource Facility</h3>
+                <p>
+                    The Academic Resource Center (ARC) provides students with academic support and promotes their scholastic growth
+                </p>
+            </div>
+
+            <div class="fea-box">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <h3>Research paper</h3>
+                <p>
+                    A research paper is a piece of academic writing that provides analysis, interpretation, and argument based on in-depth independent research.
+                </p>
+            </div>
+
+            <div class="fea-box">
+                <i class="fas fa-award"></i>
+                <h3> student create a blog</h3>
+                <p>
+                    Students can write News Blogs to share school-, community-, and even global-news stories with a specific audience.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Features section ends from here -->
+    <!-- Courses section starts from here -->
+    <section id="course">
+        <h1>Academic Related Resource</h1>
+        <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+
+        <div class="course-box">
+            @foreach (var resource in Model.AcademicResource)
+            {
+
+
+                <div class="courses">
+                    <img src="~/@resource.ImagePath" alt="">
+                    <div class="details">
+                        <span>Updated 21/8/22</span>
+
+                        <h6> @resource.Title<h6>
+
+
+
+                    </div>
+
+                    <div class="cost">
+                        <a style="text-decoration:none;" class="text-light" asp-action="Details" asp-controller="Home" asp-route-id="@resource.Id">Details</a>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="AllAcademiceResource" class="beautiful-button">Show More </a>
+        </div>
+    </section>
+    <!-- Courses section ends from here -->
+    <!-- Experts section starts from here -->
+    <section id="experts">
+        <h1>Community Experts</h1>
+        <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+        <div class="expert-box">
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/Faysal-modified2.jpg" alt="">
+                <h6>Faysal Ahmed</h6>
+                <p>Python & Algorithms Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/Faysal-modified2.jpg" alt="">
+                <h6>Tanvir Mahamud</h6>
+                <p>Full Stack Developer</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/received_880819079744127.jpeg" alt="">
+                <h6>Tamima Binta Rahman</h6>
+                <p>Design Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/19no.JPG" alt="">
+
+                <h6>Tanvir Mahamud</h6>
+                <p>Design Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Experts section ends from here -->
+
+</body>
+
+

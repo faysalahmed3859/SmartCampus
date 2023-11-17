@@ -1,0 +1,234 @@
+﻿@{
+    var DynamicUrl = "/Dashboard/";
+    var DynamicUrl1 = "/Dashboard/";
+    var DynamicUrl2 = "/Dashboard/";
+    var DynamicUrlSetting = "/Dashboard/";
+    var DynamicUrlAccount = "/Dashboard/";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,600;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="~/lib/admin-das/AdminLTE.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-----------Side Bar Start----------->
+        <div class="sidebar">
+            <div class="sidebar-head">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="head-img">
+                            <img src="~/images/admin.jpg" alt="Alternate Text" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="head-padding">
+                            <span>UserName</span>
+                            <p>Admin@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-body">
+
+                <ul>
+                    @{if ((Context.Request.Path.StartsWithSegments("/Student/Index") == true))
+                        {
+                            DynamicUrl = "/Student/Index";
+
+                        }
+                       
+                    }
+                    <li>
+                        <a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl) ? "parentMenu" : null) dropdown2"><i class="fas fa-users"></i><span>SRM</span><i class="fas fa-caret-down"></i></a>
+                        <ul class="@(Context.Request.Path.StartsWithSegments(DynamicUrl) ? "show" : null) dropdown-menu2">
+                            @{ DynamicUrl = "/Student/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl) ? "active" : null)" href="@DynamicUrl">Student</a></li>
+                           
+                        </ul>
+                    </li>
+
+                    @{if ((Context.Request.Path.StartsWithSegments("/Home/ApproveAcademiceIndex") == true))
+                        {
+                            DynamicUrl1 = "/Home/ApproveAcademiceIndex";
+
+                        }
+                        else if ((Context.Request.Path.StartsWithSegments("/Home/ApproveIndex") == true))
+                        {
+                            DynamicUrl1 = "/Home/ApproveIndex";
+
+                        }
+                    }
+                    <li>
+                        <a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl1) ? "parentMenu" : null) dropdown3"><i class="fas fa-user-tie"></i><span>Approve</span><i class="fas fa-caret-down"></i></a>
+                        <ul class="@(Context.Request.Path.StartsWithSegments(DynamicUrl1) ? "show" : null) dropdown-menu3">
+                            @{ DynamicUrl1 = "/Home/ApproveAcademiceIndex";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl1) ? "active" : null)" href="@DynamicUrl1">Academic Approve</a></li>
+                            @{ DynamicUrl1 = "/Home/ApproveIndex";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl1) ? "active" : null)" href="@DynamicUrl1">Post Approve</a></li>
+                        </ul>
+                    </li>
+                    @{if ((Context.Request.Path.StartsWithSegments("/Categories/Index") == true))
+                        {
+                            DynamicUrl2 = "/Categories/Index";
+
+                        }
+                        else if ((Context.Request.Path.StartsWithSegments("/Departments/Index") == true))
+                        {
+                            DynamicUrl2 = "/Departments/Index";
+
+                        }
+
+                        else if ((Context.Request.Path.StartsWithSegments("/Subjects/Index") == true))
+                        {
+                            DynamicUrl2 = "/Subjects/Index";
+
+                        }
+
+                        else if ((Context.Request.Path.StartsWithSegments("/MakePosts/Index") == true))
+                        {
+                            DynamicUrl2 = "/MakePosts/Index";
+
+                        }
+                        else if ((Context.Request.Path.StartsWithSegments("/AcademicResources/Index") == true))
+                        {
+                            DynamicUrl2 = "/AcademicResources/Index";
+
+                        }
+                        
+
+
+                    }
+                    <li>
+                        <a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "parentMenu" : null) dropdown0"><i class="fas fa-boxes"></i><span>SRM Management</span><i class="fas fa-caret-down"></i></a>
+                        <ul class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "show" : null) dropdown-menu0">
+                            @{ DynamicUrl2 = "/Categories/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "active" : null)" href="@DynamicUrl2">Category</a></li>
+                            @{ DynamicUrl2 = "/Departments/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "active" : null)" href="@DynamicUrl2">Departments</a></li>
+                            @{ DynamicUrl2 = "/Subjects/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "active" : null)" href="@DynamicUrl2">Subjects</a></li>
+                            @{ DynamicUrl2 = "/MakePosts/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "active" : null)" href="@DynamicUrl2">MakePost</a></li>
+                            @{ DynamicUrl2 = "/AcademicResources/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrl2) ? "active" : null)" href="@DynamicUrl2">AcademicResource</a></li>
+
+                        </ul>
+                    </li>
+                    
+                    @{if ((Context.Request.Path.StartsWithSegments("/Banners/Index") == true))
+                        {
+                            DynamicUrlSetting = "/Banners/Index";
+
+                        }                        
+                        else if ((Context.Request.Path.StartsWithSegments("/Administration/Index") == true))
+                        {
+                            DynamicUrlSetting = "/Administration/Index";
+
+                        }
+                        
+                    }
+                    <li class="bottom-menue">
+                        <a class="@(Context.Request.Path.StartsWithSegments(DynamicUrlSetting) ? "parentMenu":null) dropdown5"><i class="fas fa-cog"></i><span>Settings</span><i class="fas fa-caret-down"></i></a>
+                        <ul class="@(Context.Request.Path.StartsWithSegments(DynamicUrlSetting) ? "show":null) dropdown-menu5">
+                           
+                            @{ DynamicUrlSetting = "/Banners/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrlSetting) ? "active":null)" href="@DynamicUrlSetting">Banners</a></li>
+                            
+                            @{ DynamicUrlSetting = "/Administration/Index";}
+                            <li><a class="@(Context.Request.Path.StartsWithSegments(DynamicUrlSetting) ? "active":null)" href="@DynamicUrlSetting">Role</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <form method="post" asp-action="logout" asp-controller="Account">
+                            <button type="submit" style="all:unset">
+                                <a class="logoutbtn"><i class="fas fa-power-off"></i><span>Log Out</span></a>
+                            </button>         
+                        </form>
+                      
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-----------Side Bar End----------->
+        <!-----------Main Start----------->
+        <div class="main">
+            <!-----------NavBar Start----------->
+            <nav class="navbar navbar-expand-lg  navbar-custom">
+                <label class="bar" for="check"><i class="fas fa-bars" id="sidebar-btn"></i></label>
+                <a class="navbar-brand" href="#">@ViewBag.Title</a>
+            </nav>
+            <!-----------NavBar End----------->
+            <div>
+
+                @RenderBody()
+            </div>
+
+        </div>
+        <!-----------Main End----------->
+    </div>
+
+    <!--Small Modal -->
+    <div class="modal fade" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large modal -->
+    <div class="modal fade" id="large-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/bccc7b239b.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

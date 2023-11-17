@@ -1,0 +1,170 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Website Template</title>
+
+    <!-- font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/profilestyle.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/about.css" rel="stylesheet" />
+    <link href="~/css/blog.css" rel="stylesheet" />
+    <link href="~/css/post.css" rel="stylesheet" />
+    <link href="~/css/course-inner.css" rel="stylesheet" />
+    <link href="~/css/contact.css" rel="stylesheet" />
+
+    <!-- JQuery CDN link -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+   
+</head>
+<body>
+    <nav>
+        <a asp-controller="Home" asp-action="Index"><img src="~/img/default-monochrome.svg" class="logo" alt=""></a>
+
+        <div class="navigation">
+            <ul>
+                <i id="menu-close" class="fas fa-times"></i>
+               
+                <div class="search-container">
+                    <form  method="post" asp-controller="Home" asp-action="Search" class="search-form">
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Post</a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-controller="Home" asp-action="ListByCategory" asp-route-categoryName="Events">Events</a></li>
+                        <li><a asp-controller="Home" asp-action="GetCategory" asp-route-categoryName="Notice">Notice</a></li>
+                        <li><a asp-controller="Home" asp-action="BlogPost" asp-route-categoryName="Notice">BlogPost</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Category</a>
+                    @await Component.InvokeAsync("CategoryMenu")
+                </li>
+                <li><a asp-controller="Email" asp-action="Index">Contact</a></li>
+                <li><a asp-controller="Home" asp-action="About">AboutUs</a></li>
+                @if (signInManager.IsSignedIn(User))
+                {
+
+
+
+                    <li>
+                        @{
+                            var currentuser = await UserManager.GetUserAsync(User);
+                        }
+                        <a asp-controller="Home" asp-action="UserProfile" asp-route-id="@currentuser.Id">Profile</a>
+                    </li>
+                    <li>
+
+
+                        <a>
+                            <form method="post" asp-action="logout" asp-controller="Account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="width:auto; background-color:white;">
+                                    Logout
+                                </button>
+                            </form>
+                        </a>
+
+                    </li>
+                }
+                else
+                {
+                    <li><a asp-area="" asp-controller="Account" asp-action="Register">SignUp</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="login">SignIn</a></li>
+                }
+
+
+            </ul>
+            <img src="~/img/menu.png" id="menu-btn" alt="">
+        </div>
+    </nav>
+    <!-- Navigation ends -->
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer section starts from here -->
+    <footer>
+        <div class="footer-col">
+            <h3>Top Products</h3>
+            <li>Manage Reputation</li>
+            <li>Power Tools</li>
+            <li>Managed Website</li>
+            <li>Marketing Service</li>
+        </div>
+
+        <div class="footer-col">
+            <h3>Power Tools</h3>
+            <li>Jobs</li>
+            <li>Marketing Service</li>
+            <li>Top Products</li>
+            <li>Manage Reputation</li>
+        </div>
+
+        <div class="footer-col">
+            <h3>Power Tools</h3>
+            <li>Managed Website</li>
+            <li>Manage Reputation</li>
+            <li>Top Products</li>
+            <li>Marketing Service</li>
+        </div>
+
+        <div class="footer-col">
+            <h3>Guides</h3>
+            <li>Research</li>
+            <li>Experts</li>
+            <li>Managed Website</li>
+            <li>Marketing Service</li>
+        </div>
+
+        <div class="footer-col">
+            <h3>Newsletter</h3>
+            <p>You can trust us. we only send promo offers.</p>
+
+            <div class="subscribe">
+                <input type="email" placeholder="Your email Address">
+                <a href="#" class="yellow">SUBSCRIBE</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>
+                Copyright &copy; 2022 All rights reserved | This template is made by <a href="https://atulcodex.com" target="_blank">Fayasl IT</a>
+            </p>
+            <div class="pro-links">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-linkedin-in"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer section ends from here -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

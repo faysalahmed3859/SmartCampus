@@ -1,0 +1,355 @@
+﻿@model SmartCampus.ViewModels.UserProfileViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> UserManager
+*@{
+    var currentuser = await UserManager.GetUserAsync(User);
+}
+<style>
+    .beautiful-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #151564; /* Change to your desired button color */
+        color: #fff; /* Text color */
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        margin-top: 20px; /* Add a smooth transition effect on hover */
+        /* Add more styles as desired to make the button beautiful */
+    }
+
+        .beautiful-button:hover {
+            background-color: white;
+            text-decoration: none; /* Change the button color on hover */
+            color: black;
+        }
+</style>
+<body>
+
+    <section class="cover-image-section">
+        <header class="cover-hader-site">
+
+            <img src="~/images/permanet_campus-01.jpeg">
+
+            <div class="cover-image-div">
+                <div class="cover-image-edite-btn">
+                    <button>
+                        <i class="fas fa-camera"></i>
+                        Edit Covar Photo
+                    </button>
+                </div>
+            </div>
+
+        </header>
+    </section>
+
+    <section class="profile-section">
+        <div class="profile-section-in">
+
+            <div class="profile-image-site">
+                <div class="profile-image-div">
+                    <a href="#">
+                        <img src="~/@Model.User.UserImagePath">
+                    </a>
+                    <span class="fas fa-camera"></span>
+                </div>
+            </div>
+            <div class="profile-name-info">
+                <h1>
+
+                    @if (currentuser != null)
+                    {
+                        <span class="pro-txt">@currentuser.FirstName @currentuser.LastName</span>
+                    }
+
+
+                </h1>
+            </div>
+            <div class="profile-button-site">
+                <div class="btn-site-pro">
+                    <span class="edit-profile-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        <a asp-controller="Home" asp-action="AddOrEdit">Create Post</a>
+                    </span>
+
+                    <span class="edit-profile-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        <a asp-controller="Home" asp-action="AddOrEditResorce">Add Academice Post</a>
+                    </span>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+
+    <section class="post-section">
+        <div class="post-section-in">
+            <section class="info-section">
+                <div class="about-info">
+                    <h4>Intro</h4>
+
+                    <p id="bio-text">Faysal Ahmed</p>
+                    <div class="bio-btn-click">
+                        @if (currentuser != null)
+                        {
+                            <span class="pro-txt">@currentuser.FirstName @currentuser.LastName</span>
+                        }
+                        <p class="length-count-txt">
+                            <span id="length-count">101</span> characters remaining
+                        </p>
+                        <div class="putlic-c-o-btn">
+                            <div>
+                                <p><span class="fas fa-globe-europe"></span> Public</p>
+                            </div>
+                            <div class="button-site-js">
+                                <button id="cencel-btn">Cencel</button>
+                                <button id="save-btn">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="bio-edit-btn" class="edit-bio btn">Edit Bio</button>
+
+                    <ul>
+                        <li>
+                            <i class="fas fa-briefcase"></i> Works at
+                            @if (currentuser != null)
+                            {
+                                <span class="pro-txt">@currentuser.FirstName @currentuser.LastName</span>
+                            }
+                        </li>
+
+                        <li>
+                            <i class="fas fa-envelope"></i> Email
+                            <a href="#">@Model.User.Email</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-home"></i> Lives in
+                            <a href="#">Dhaka, Bangladesh</a>
+                        </li>
+
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i> From
+                            <a href="#">Faridpur, Dhaka, Bangladesh</a>
+                        </li>
+                        <li><i class="fas fa-heart"></i> Single</li>
+                        <li>
+                            <i class="fas fa-globe"></i> <a href="#">
+                                faysal.com
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <button class="edit-bio btn">
+                        <a asp-controller="Home" asp-action="Edituser"
+                           asp-route-id="@Model.User.Id" class="btn btn-light"> Edit Details</a>
+                       
+                    </button>
+                </div>
+            </section>
+            <section class="post-info">
+
+
+                <div class="list-type">
+                    <div class="fil-list">
+
+                        <button id="showMakePost" class="btn btn-light">Posts</button>
+                    </div>
+                    <div class="fil-list">
+
+                        <button id="showAcademicResources" class="btn btn-light"> Academic Resources</button>
+                    </div>
+                </div>
+                <div id="makePostSection">
+
+                    <!-- Your existing MakePost code here -->
+                    <!-- ************ Post ************ -->
+                    @if (Model.Posts.Any())
+                    {
+                        @foreach (var post in Model.Posts)
+                        {
+                            <div class="box-design post-div">
+                                <div class="post-infarmation">
+                                    <div>
+                                        <div class="profil-ing-div post-profile-img">
+                                            <a href="#">
+                                                <img src="~/@Model.User.UserImagePath">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-three-dot">
+                                        @if (currentuser != null)
+                                        {
+                                            <span class="pro-txt">@currentuser.FirstName @currentuser.LastName</span>
+                                        }
+                                        <p>
+                                            <a href="%">@post.Date</a>
+
+                                        </p>
+                                        <h6>@post.Title</h6>
+
+                                    </div>
+                                </div>
+
+                                <div class="post-background">
+                                    <div class="blogs">
+                                        <div class="post">
+                                            <img src="~/@post.ImagePath" alt="" style="width:100%">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actavite">
+
+                                    <div>
+
+                                        <a asp-controller="Home" asp-action="AddOrEdit"
+                                           asp-route-id="@post.Id" class="beautiful-button">Edit</a>
+
+
+                                    </div>
+                                    @if (post.IsApproved == false)
+                                    {
+                                        <div class="mt-4">
+                                            <p>Pandding</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div>
+
+                                        </div>
+                                    }
+
+                                    <div>
+
+                                        <form asp-controller="Home" asp-action="Delete" asp-route-id="@post.Id" method="post">
+                                            <button type="submit" class="beautiful-button">Delete</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    }
+                    else
+                    {
+                        <p>No posts available.</p>
+                    }
+                </div>
+                <!-- Add a div to display AcademicResource data -->
+                <div id="academicResourceSection">
+
+                    <!-- Use partial view or include AcademicResources.cshtml here -->
+                    @if (Model.AcademicResources.Any())
+                    {
+
+                        @foreach (var post in Model.AcademicResources)
+                        {
+                            <div class="box-design post-div">
+                                <div class="post-infarmation">
+                                    <div>
+                                        <div class="profil-ing-div post-profile-img">
+                                            <a href="#">
+                                                <img src="~/@Model.User.UserImagePath">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-three-dot">
+                                        @if (currentuser != null)
+                                        {
+                                            <span class="pro-txt">@currentuser.FirstName @currentuser.LastName</span>
+                                        }
+                                        <p>
+                                            <a href="%">@post.Date</a>
+
+                                        </p>
+                                        <h6>@post.Title</h6>
+
+                                    </div>
+                                </div>
+
+                                <div class="post-background">
+                                    <div class="blogs">
+                                        <div class="post">
+                                            <img src="~/@post.ImagePath" alt="" style="width:100%">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actavite">
+
+                                    <div>
+
+                                        <a asp-controller="Home" asp-action="AddOrEditResorce"
+                                           asp-route-id="@post.Id" class="beautiful-button">Edit</a>
+
+
+                                    </div>
+                                    @if (post.IsApproved == false)
+                                    {
+                                        <div class="mt-4">
+                                            <p>Pandding</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div >
+
+                                        </div>
+                                    }
+                                    <div>
+
+                                        <form asp-controller="Home" asp-action="DeleteResorce" asp-route-id="@post.Id" method="post">
+                                            <button type="submit" class="beautiful-button">Delete</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>No posts available.</p>
+                    }
+                </div>
+
+
+
+            </section>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initially hide the AcademicResource section
+            $("#academicResourceSection").hide();
+
+            // Show MakePost section when the button is clicked
+            $("#showMakePost").click(function () {
+                $("#academicResourceSection").hide();
+                $("#makePostSection").show();
+            });
+
+            // Show AcademicResource section when the button is clicked
+            $("#showAcademicResources").click(function () {
+                $("#makePostSection").hide();
+                $("#academicResourceSection").show();
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="~/js/castom.js"></script>
+</body>

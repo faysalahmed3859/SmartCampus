@@ -1,0 +1,90 @@
+﻿
+@model SmartCampus.ViewModels.RegistrerViewModel
+
+    <style>
+        .beautiful-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #151564; /* Change to your desired button color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add a smooth transition effect on hover */
+            /* Add more styles as desired to make the button beautiful */
+        }
+
+            .beautiful-button:hover {
+                background-color: white;
+                text-decoration: none; /* Change the button color on hover */
+                color: black;
+            }
+    </style>
+<!-- Navigation ends -->
+<header id="top-banner">
+    <div class="banner-content">
+        <h1>Welcome to Our Stamford LarnHub</h1>
+        <p>Join us to access exclusive content and courses!</p>
+
+    </div>
+</header>
+
+
+
+<!-- Registration section starts from here -->
+
+
+<section id="registration">
+    <div class="reminder">
+        <h1>Registration To Get It Benefits</h1>
+    </div>
+
+    <form method="post">
+        <div class="form">
+            <h3>SignIn Your Account</h3>
+
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-field">
+                <input type="email" placeholder="Email ID" asp-for="Email">
+                <div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+               
+            </div>
+
+            
+            <div>
+                <input type="text" placeholder="First Name" asp-for="FirstName">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="text" placeholder="Last Name" asp-for="LastName">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="password-container">
+                <div class="password-input">
+                    <input type="password" placeholder="Password" asp-for="Password" id="password">
+                    <i class="fas fa-eye" id="password-toggle-icon" onclick="togglePasswordVisibility()"></i>
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="password-container">
+                <div class="password-input">
+                    <input type="password" placeholder="Comfirm Password" asp-for="ComfirmPassword" id="passwords">
+                    <i class="fas fa-eye" id="password-toggle-icons" onclick="togglePasswordVisibilitys()"></i>
+                </div>
+                <span asp-validation-for="ComfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="btn">
+                <button type="submit" class="beautiful-button">Register</button>
+
+            </div>
+
+        </div>
+    </form>
+</section>
+<!-- Registration section ends from here -->

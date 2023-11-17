@@ -1,0 +1,274 @@
+﻿@using SmartCampus.ViewModels
+@model IndexVM
+    <style>
+        .beautiful-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #151564; /* Change to your desired button color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add a smooth transition effect on hover */
+            /* Add more styles as desired to make the button beautiful */
+        }
+
+            .beautiful-button:hover {
+                background-color: white;
+                text-decoration: none; /* Change the button color on hover */
+                color: black;
+            }
+    </style>
+@{
+    if (User.IsInRole("Admin"))
+    {
+
+
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Dashboard</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            @*<li class="breadcrumb-item active">Dashboard v1</li>*@
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>150</h3>
+                                <p>New Orders</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                <p>Bounce Rate</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>44</h3>
+
+                                <p>User Registrations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>65</h3>
+
+                                <p>Unique Visitors</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+
+    }
+    else
+    {
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+        int count4 = 0;
+        int count5 = 0;
+
+<body>
+   
+    <!-- Hero section starts from here -->
+    @foreach (var banner in Model.Banners)
+    {
+        <section id="home" style="background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5,4,46,0.7)), url('@banner.ImagePath');">
+            <h2>
+                @banner.Name
+            </h2>
+            <p>
+                @banner.Description
+            </p>
+            <div>
+
+                <a asp-controller="Home" asp-action="AllAcademiceResource" class="blue">All Resource</a>
+            </div>
+        </section>
+
+    }
+
+    <!-- Hero section ends from here -->
+    <!-- Features section starts from here -->
+<section id="features">
+   
+    <h1>Awesome Features</h1>
+    <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+
+    <div class="fea-base">
+        <div class="fea-box">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Academic Resource Facility</h3>
+            <p>
+                The Academic Resource Center (ARC) provides students with academic support and promotes their scholastic growth
+            </p>
+        </div>
+
+        <div class="fea-box">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <h3>Research paper</h3>
+            <p>
+                A research paper is a piece of academic writing that provides analysis, interpretation, and argument based on in-depth independent research.
+            </p>
+        </div>
+
+        <div class="fea-box">
+            <i class="fas fa-award"></i>
+            <h3> student create a blog</h3>
+            <p>
+                Students can write News Blogs to share school-, community-, and even global-news stories with a specific audience.
+            </p>
+        </div>
+    </div>
+</section>
+    <!-- Features section ends from here -->
+    <!-- Courses section starts from here -->
+    <section id="course">
+        <h1>Academic Related Resource</h1>
+        <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+
+        <div class="course-box">
+            @foreach (var item in Model.AcademicResources)
+            {
+                if (count1 < 6)
+                {
+                    count1 = count1 + 1;
+
+                    <div class="courses">
+                        <img src="@item.ImagePath" alt="">
+                        <div class="details">
+                            <span>Updated 21/8/22</span>
+
+                            <h6>
+                                @item.Title<h6>
+
+                                  
+                        </div>
+
+                        <div class="cost">
+                            <a style="text-decoration:none;" class="text-light" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="AllAcademiceResource" class="beautiful-button">Show More </a>
+        </div>
+    </section>
+    <!-- Courses section ends from here -->
+    <!-- Experts section starts from here -->
+    <section id="experts">
+        <h1>Community Experts</h1>
+        <p>Education can be considered the process of discovering something new that a person did not previously know</p>
+        <div class="expert-box">
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/Faysal-modified2.jpg" alt="">
+                <h6>Faysal Ahmed</h6>
+                <p>Python & Algorithms Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/Faysal-modified2.jpg" alt="">
+                <h6>Tanvir Mahamud</h6>
+                <p>Full Stack Developer</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/received_880819079744127.jpeg" alt="">
+                <h6>Tamima Binta Rahman</h6>
+                <p>Design Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+
+            <div class="profile">
+                <img class="img-fluid rounded-circle" src="~/images/19no.JPG" alt="">
+
+                <h6>Tanvir Mahamud</h6>
+                <p>Design Expert</p>
+                <div class="pro-links">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Experts section ends from here -->
+
+</body>
+
+    }
+}

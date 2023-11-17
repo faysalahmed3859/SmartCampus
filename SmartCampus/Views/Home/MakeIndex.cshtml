@@ -1,0 +1,60 @@
+﻿@model List<SmartCampus.Models.MakePost>
+
+@{
+    ViewData["Title"] = "MakePost List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>MakepostStatus</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var makePost in Model)
+        {
+            <tr>
+                <td>@makePost.Title</td>
+                <td>@makePost.Date</td>
+                <td>@makePost.Category.Name</td> <!-- Assuming you have a navigation property to Category -->
+                <td>@makePost.MakepostStatus</td>
+
+                <td>
+
+                    <div class="card-footer">
+                        <form method="post" asp-action="Delete" asp-route-id="@makePost.Id">
+                            <a asp-controller="Home" asp-action="AddOrEdit"
+                               asp-route-id="@makePost.Id" class="btn btn-primary">Edit</a>
+
+                            <span id="confirmDeleteSpan_@makePost.Id" style="display:none">
+                                <span>Are you sure you want to delete?</span>
+                                <button type="submit" class="btn btn-danger">Yes</button>
+                                <a href="#" class="btn btn-primary"
+                                   onclick="confirmDelete('@makePost.Id', false)">No</a>
+                            </span>
+
+                            <span id="deleteSpan_@makePost.Id">
+                                <a href="#" class="btn btn-danger"
+                                   onclick="confirmDelete('@makePost.Id', true)">Delete</a>
+                            </span>
+                        </form>
+
+                    </div>
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,35 @@
+﻿@using SmartCampus.Models;
+@model cloudscribe.Pagination.Models.PagedResult<MakePost>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "GetCategory";
+
+}
+<body>
+    <!-- Hero section starts from here -->
+    <header id="top-banner">
+        <div class="banner-content">
+            <h1>Notice Board</h1>
+        </div>
+    </header>
+    <!-- Hero section ends from here -->
+    <!-- Blog container starts from here -->
+    <section id="blog-container">
+        <div class="blogs">
+            @foreach (var item in Model.Data)
+            {
+                <div class="post">
+                    
+                    <h3>@item.Title</h3>
+                    <p>@item.Date</p>
+                    <a asp-action="GetCategoryDetails" asp-controller="Home" asp-route-id="@item.Id">Read More</a>
+                </div>
+            }
+
+        </div>
+        
+    </section>
+    <!-- Blog container ends from here -->
+
+</body>

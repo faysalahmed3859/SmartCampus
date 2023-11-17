@@ -1,0 +1,24 @@
+﻿@if (ViewBag.ErrorTitle == null)
+{
+    <header id="top-banner">
+        <div class="banner-content">
+            <h3>
+                An occured while processing your request.
+                The support team is notified and we are working on the fix
+            </h3>
+            <h5>Please contact us on stamfordUniversity.com</h5>
+
+        </div>
+    </header>
+
+}
+else
+{
+    <header id="top-banner">
+        <div class="banner-content">
+            <h1 class="text-light">@ViewBag.ErrorTitle</h1>
+            <h6 class="text-light">@ViewBag.ErrorMessage</h6>
+        </div>
+    </header>
+    
+}

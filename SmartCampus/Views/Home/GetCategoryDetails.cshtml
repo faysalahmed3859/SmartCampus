@@ -1,0 +1,42 @@
+﻿@using SmartCampus.Models
+@model SmartCampus.Models.MakePost
+@{
+    ViewData["Title"] = "Resource Details";
+    int i;
+    int j;
+}
+<body>
+    <!-- Post body starts from here -->
+    <div id="blog-container">
+        <div class="blogs blogpost">
+            <div class="post">
+                @if (ViewBag.gallery != null)
+                {
+                    @if (Model.ImagePath == null)
+                    {
+
+                        <img src="~/uploadimages/No_Image_Avail.png" />
+
+                    }
+                    else
+                    {
+                        foreach (var item in ViewBag.gallery)
+                        {
+                            <img src="~/@item.ImagePath" alt="" />
+                        }
+
+                    }
+                }
+                
+                <h3>@Model.Title</h3>
+                <p>@Model.Description</p>
+                <br>
+
+                <p>
+                    <a href="@Model.Link">you can Visite our university website </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Post body ends from here -->
+</body>

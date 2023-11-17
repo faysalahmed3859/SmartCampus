@@ -1,0 +1,42 @@
+﻿@model SmartCampus.ViewModels.UserPostsViewModel
+
+<header id="top-banner">
+    <div class="banner-content">
+        <h1>Welcome to Our Stamford LarnHub</h1>
+        <p>Join us to access exclusive content and courses!</p>
+
+    </div>
+</header>
+
+
+@if (Model.TargetUser != null)
+{
+    <h1>@Model.TargetUser.UserName's Posts</h1>
+    <!-- Rest of your code here -->
+}
+
+@if (Model.AcademicResources != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.AcademicResources)
+            {
+                <tr>
+                    <td>@post.Title</td>
+                    <td>@post.Description</td>
+                    <td>@post.Date.ToShortDateString()</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

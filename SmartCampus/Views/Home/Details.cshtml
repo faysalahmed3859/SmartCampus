@@ -1,0 +1,91 @@
+﻿@using SmartCampus.Models
+@model SmartCampus.Models.AcademicResource
+@{
+    ViewData["Title"] = "Resource Details";
+    int i;
+    int j;
+}
+<body>
+
+    <!-- Hero section starts from here -->
+    <header id="top-banner">
+    <div class="banner-content">
+        <h1> Details </h1>
+    </div>
+    </header>
+    <!-- Hero section ends from here -->
+    <!-- Course body section starts -->
+    <section id="course-inner">
+        <div class="overview">
+            @if (ViewBag.gallery != null)
+            {
+                @if (Model.ImagePath == null)
+                {
+
+                    <img src="~/uploadimages/No_Image_Avail.png" />
+
+                }
+                else
+                {
+
+                    foreach (var item in ViewBag.gallery)
+                    {
+                        <img src="~/@item.ImagePath" class="course-img" alt="" />
+
+                    }
+
+                }
+            }
+
+
+            <div class="course-head">
+                <div class="c-name">
+                    <h2>@Model.Title</h2>
+
+                   
+
+                    <p>
+                        Modern javascript from the beggining - all the way up to JS export level! The must have JavaScript resource in 2021.
+                    </p>
+                </div>
+                <span></span>
+            </div>
+            <h3>Post By</h3>
+            <div class="tutor">
+                <img src="~/img/c4.jpg" alt="">
+                <div class="tutor-det"> 
+                    <a asp-controller="Home" asp-action="ViewUserPosts" asp-route-userId="@User.Identity.Name">View My Posts</a>
+                    <h5>@Model.Author</h5>
+                    <p>Stamford University Bangladesh</p>
+                </div>
+            </div>
+            <hr>
+            <h3>Description</h3>
+            <p>
+                @Model.Description
+            </p>
+            <br>
+            <p>
+
+            </p>
+            <br>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit recusandae tempore quia repellat officiis voluptatum blanditiis, cupiditate, sit minus beatae distinctio, numquam illum alias repellendus ad quis earum voluptatibus iusto. Ut est, velit deserunt? Tempore modi hic error nam, vel?
+            </p>
+
+            <hr>
+
+
+            <div class="container">
+                <h2>View PDF</h2>
+                <embed src="~/@Model.PdfPath" type="application/pdf" width="100%" height="500">
+            </div>
+
+
+        </div>
+
+
+    </section>
+    <!-- Course body section starts -->
+
+</body>

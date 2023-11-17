@@ -1,0 +1,107 @@
+﻿@using SmartCampus.Models;
+@model cloudscribe.Pagination.Models.PagedResult<AcademicResource>
+
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "AllAcademiceResource";
+}
+<body>
+    <!-- Hero section starts from here -->
+    <header id="top-banner">
+        <div class="banner-content">
+            <h1>Category Wise Resource</h1>
+        </div>
+    </header>
+    <!-- Hero section ends from here -->
+
+        <div class="container">
+            <h4>Let's Connect</h4>
+            <p>you can Search department wise</p>
+            <form asp-action="AllAcademiceResource" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-8 col-lg-8 col-8">
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="departmentDropdown">Department</label>
+                                    <select id="departmentDropdown" name="departmentId" class="form-control">
+                                        <option value="">Select Department</option>
+                                        @foreach (var department in ViewBag.Departments)
+                                        {
+                                            <option value="@department.Id">@department.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="subjectDropdown">Subject:</label>
+                                        <select id="subjectDropdown" name="subjectId" class="form-control">
+                                            <option value="">Select Subject</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+
+
+                        <div class="container d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-outline-dark">Save</button>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+    <!-- Courses section starts from here -->
+
+    @if (Model.Data.Any())
+    {
+        <section id="course">
+            <h1>All Academice Resource</h1>
+            <p>Replenish man have thing gathering lights yielding shall you</p>
+
+            <div class="course-box">
+                @foreach (var item in Model.Data)
+                {
+                    <div class="courses">
+                        <img src="~/@item.ImagePath" alt="">
+                        <div class="details">
+                            <span>Updated 21/8/22</span>
+                            <h6>@item.Title</h6>
+
+                        </div>
+                        <div class="cost">
+                            <a style="text-decoration:none;" class="text-light" asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">Details</a>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+            </div>
+        </section>
+
+        <!-- Courses section ends from here -->
+    }
+    else
+    {
+        <div class="banner-content">
+            <p class="text-center">No Resource available.</p>
+        </div>
+
+    }
+</body>
